@@ -17,19 +17,18 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences meusdados;
     public static final String mypreference = "call";
 
-    EditText email;
-    EditText senha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
         meusdados = getSharedPreferences(mypreference, Context.MODE_PRIVATE);
 
         TextView cadastra = findViewById(R.id.btn_Cadastrar);
         Button login = findViewById(R.id.btn_Login);
-        setContentView(R.layout.activity_main);
-        email = findViewById(R.id.edt_email);
-        senha = findViewById(R.id.edt_senha);
+
+        final EditText email = findViewById(R.id.edt_email);
+        final EditText senha = findViewById(R.id.edt_senha);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,20 +40,20 @@ public class MainActivity extends AppCompatActivity {
                     if(meuemail.equals(meusdados.getString("email", ""))
                             && minhasenha.equals(meusdados.getString("senha", ""))){
 
-                        Intent ite = new Intent(getApplicationContext(), Act_Cadastrar.class);
+                        Intent ite = new Intent(getApplicationContext(), Act_Simulador.class);
                         startActivity(ite);
                         finish();
 
                     }else{Toast.makeText(getApplicationContext(), "DEmail e senha invalidos  ", Toast.LENGTH_LONG).show();}
                 }else{
-                    Toast.makeText(getApplicationContext(), "Dados Invalidos ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Não exitem cadastros! ", Toast.LENGTH_LONG).show();
                 }
             }
         });
         cadastra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent ite = new Intent(getApplicationContext(), Act_Simulador.class);
+                Intent ite = new Intent(getApplicationContext(), Act_Cadastrar.class);
                 startActivity(ite);
                 finish();
 
